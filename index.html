@@ -34,13 +34,29 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 60px 24px;
+  padding: 150px 24px;
+}
+
+/* TOGGLE */
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
 /* HERO */
@@ -86,22 +102,9 @@ body {
 }
 
 .image-card:hover {
-  transform: translateY(-6px);
-}
-
-/* TOGGLE */
-.toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  border: none;
-  background: var(--card);
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: 'JetBrains Mono', monospace;
-  border: 1px solid var(--border);
+  transform: translateY(-5px);
+  filter: grayscale(0%);
+  transition: transform 0.5s filter 0.9s ease;
 }
 
 /* SECTIONS */
@@ -140,14 +143,57 @@ h2 {
 }
 
 .card h3 {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 1.2rem;
+}
+
+.card .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
 
 .card p {
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+.card-header-layout {
+  padding: 24px;
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.company-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  filter: grayscale(100%);
+  background: white;
+}
+
+.company-info h3 {
+  margin-bottom: 4px;
+}
+
+.card-description {
+  color: var(--muted);
+}
+
+/* Hover polish */
+.card-header-layout:hover .company-logo {
+  filter: grayscale(0%);
+}
+
 
 /* LINKS */
 .links a {
@@ -194,11 +240,23 @@ footer {
     font-size: 3rem;
   }
 }
+
+.image-card {
+  background-image: url("https://raw.githubusercontent.com/AdarshRevankar/AdarshRevankar.github.io/main/assets/me.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+}
 </style>
 </head>
 
-<body>
-<button class="toggle" onclick="toggleTheme()">☀ / 🌙</button>
+<body class="dark">
+
+<button class="toggle" onclick="toggleTheme()">
+  <img id="themeIcon" width="24" height="24"
+    src="https://img.icons8.com/android/24/1A1A1A/sun.png"
+    alt="theme toggle" />
+</button>
 
 <div class="container">
 
@@ -206,49 +264,60 @@ footer {
     <div>
       <div class="tag">ANDROID • IOT • ML • KMM</div>
       <h1>
-        I build Android apps<br/>
-        that talk to hardware.
+        I build Android apps
+        that power
+        real-world systems.
       </h1>
       <p>
-        I'm Adarsh Revankar — Product Engineer III at Servify with 5+ years of
-        experience building Android systems, diagnostics tools, and
-        automation-heavy mobile products.
+        I'm Adarsh Revankar — Mobile Engineer (Android) at Servify with 5+ years of
+        experience building scalable Android applications and production-grade mobile systems.
       </p>
     </div>
 
     <div class="image-card">
-      Your photo goes here
     </div>
   </section>
 
   <section>
-    <h2>What I Do</h2>
+    <h2>Work</h2>
     <p class="section-desc">
-      I work at the intersection of mobile, hardware, and intelligent systems.
+      Building large-scale Android systems used in real-world device ecosystems.
     </p>
 
     <div class="grid">
-      <div class="card">
-        <h3>Android Systems</h3>
-        <p>
-          Deep experience in Kotlin, Jetpack Compose, CameraX, device policy,
-          diagnostics, and performance-focused Android apps.
+
+      <div class="card card-header-layout">
+        <div class="card-header-row">
+          <img src="https://static.ambitionbox.com/assets/v2/images/rs:fit:1280:960:false:false/aHR0cHM6Ly9tZWRpYS5uYXVrcmkuY29tL21lZGlhL2FiY29tcGxvZ28vc2VydmlmeS1vcmlnaW5hbC5qcGc.png" alt="Servify logo" class="company-logo" />
+
+          <div class="company-info">
+            <h3>Servify, Bangalore</h3>
+            <div class="meta">Product Engineer III</div>
+            <div class="meta">5 Years, Sep 2020 → Present</div>
+          </div>
+        </div>
+
+        <p class="card-description">
+          Progressed from Product Engineer I to III, building and scaling Android
+          applications across consumer, enterprise, and kiosk environments while
+          modernizing architecture, enabling automation, and improving real-world
+          product experiences.
         </p>
       </div>
 
-      <div class="card">
-        <h3>Hardware & IoT</h3>
-        <p>
-          BLE, WiFi P2P, USB, Nearby APIs, Jetson Nano communication, and robotic
-          peripheral signaling.
-        </p>
-      </div>
+      <div class="card card-header-layout">
+        <div class="card-header-row">
+          <img src="https://www.itcinfotech.com/wp-content/uploads/2025/03/itc-logo-1.webp" alt="Servify logo" class="company-logo" />
 
-      <div class="card">
-        <h3>ML & Image Processing</h3>
-        <p>
-          On-device ML using TFLite, ML Kit, OpenCV, JNI, and real-time image
-          analysis for diagnostics.
+          <div class="company-info">
+            <h3>ITC Infotech, Bangalore</h3>
+            <div class="meta">Intern - ML & Android</div>
+            <div class="meta">2 Months, Jan 2019 → Feb 2019</div>
+          </div>
+        </div>
+
+        <p class="card-description">
+          Developed LSTM based stock 2 days prediction model and integrated with android app. To predict stocks based on historical data, scraped from Yahoo. Prediction scores were in the acceptable range.
         </p>
       </div>
     </div>
@@ -260,6 +329,7 @@ footer {
       <a href="https://github.com/AdarshRevankar" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/adarshrevankar" target="_blank">LinkedIn</a>
       <a href="mailto:adarshrevankar0123@gmail.com">Email</a>
+      <a href="https://www.instagram.com/_a_d_r_i_n_o_">Instagram</a>
     </div>
   </section>
 
@@ -268,11 +338,22 @@ footer {
   </footer>
 
 </div>
-
 <script>
+const sunIcon = "https://img.icons8.com/android/24/EBEBEB/sun.png";
+const moonIcon = "https://img.icons8.com/material-outlined/24/1A1A1A/do-not-disturb-2.png";
+
 function toggleTheme() {
   document.body.classList.toggle("dark");
+  updateIcon();
 }
+
+function updateIcon() {
+  const icon = document.getElementById("themeIcon");
+  icon.src = document.body.classList.contains("dark") ? sunIcon : moonIcon;
+}
+
+updateIcon();
 </script>
+
 </body>
 </html>
